@@ -18,16 +18,17 @@ export const tasksList = (state = initialState, action) => {
     case TOGGLE_TASK:
       let newState = [];
 
-      state.forEach(task => {
+      // Modification
+      state.map(task => {
         if (task.id === action.payload.id) {
-          newState.push({
+          return newState.push({
             ...task,
             isCompleted: !task.isCompleted,
           });
-          return;
         }
         newState.push(task);
       });
+      // PAS de modifications
       return newState;
     case DELETE_TASK:
       return state.filter(task => task.id !== action.payload.id);
